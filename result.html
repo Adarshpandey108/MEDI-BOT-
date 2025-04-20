@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MediBot Pro+ Results</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Disease Prediction Result</h1>
+
+    <div class="result-box">
+      <h2>Predicted Disease:</h2>
+      <p><strong>{{ prediction }}</strong></p>
+    </div>
+
+    {% if description %}
+    <div class="result-box">
+      <h2>Description:</h2>
+      <p>{{ description }}</p>
+    </div>
+    {% endif %}
+
+    {% if precautions %}
+    <div class="result-box">
+      <h2>Recommended Precautions:</h2>
+      <ul>
+        {% for item in precautions %}
+        <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    <a href="/" class="glow-button">Check Again</a>
+  </div>
+</body>
+</html>

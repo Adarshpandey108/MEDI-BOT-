@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SICK PICK - AI Symptom Checker</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>SICK PICK 🩺</h1>
+    <p>Your AI-powered health assistant</p>
+
+    {% if message %}
+      <p style="color:red;">{{ message }}</p>
+    {% endif %}
+
+    <form method="POST" action="/predict">
+      <label for="symptoms">Select your symptoms:</label><br>
+      <select id="symptoms" name="symptoms" multiple size="15" required>
+        {% for symptom in symptoms %}
+          <option value="{{ symptom }}" {% if symptom in selected %}selected{% endif %}>{{ symptom }}</option>
+        {% endfor %}
+      </select>
+      <br><br>
+      <button type="submit" class="glow-button">Check Symptoms</button>
+    </form>
+
+    {% if prediction %}
+      <div class="result">
+        <h2>🔍 Predicted Disease: {{ prediction }}</h2>
+        {% if precautions %}
+          <h3>🩺 Suggested Precautions:</h3>
+          <ul>
+            {% for item in precautions %}
+              <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
